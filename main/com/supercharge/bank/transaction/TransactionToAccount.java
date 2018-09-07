@@ -93,4 +93,7 @@ public class TransactionToAccount extends Transaction {
         return true;
     }
 
+    public Client getClientTo() {
+        return clientTo;
+    }
 }
