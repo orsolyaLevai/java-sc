@@ -1,9 +1,13 @@
-package com.supercharge.bank.model;
+package com.supercharge.bank.transaction;
+
+import com.supercharge.bank.model.Client;
+import com.supercharge.bank.model.TransactionType;
+import com.supercharge.bank.util.Utils;
 
 import java.math.BigDecimal;
 
 /**
- * The class is for representing the deposit and withdraw certain amount of money from his/her bank account.
+ * The class is for representing the deposit certain amount of money to his/her bank account.
  */
 public class TransactionDeposit extends Transaction {
 
@@ -49,7 +53,7 @@ public class TransactionDeposit extends Transaction {
     @Override
     public Transaction startTransaction() {
 
-        BigDecimal moneyOfClientFrom = clientFrom.getAmountOfMoney().subtract(transferedAmount);
+        BigDecimal moneyOfClientFrom = clientFrom.getAmountOfMoney().add(transferedAmount);
         clientFrom.setAmountOfMoney(moneyOfClientFrom);
 
         return this;
@@ -58,8 +62,8 @@ public class TransactionDeposit extends Transaction {
 
 
     /**
-     * it ends the deposit: add the transaction to the history close database, restore if it is necessarily.
-     * @return
+     * It ends the deposit: add the transaction to the history close database, restore if it is necessarily.
+     * @return boolean: if it was successful or not
      */
     @Override
     public boolean endTransaction() {

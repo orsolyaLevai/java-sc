@@ -1,4 +1,7 @@
-package com.supercharge.bank.model;
+package com.supercharge.bank.transaction;
+
+import com.supercharge.bank.model.Client;
+import com.supercharge.bank.model.TransactionType;
 
 import java.math.BigDecimal;
 import java.util.Date;
