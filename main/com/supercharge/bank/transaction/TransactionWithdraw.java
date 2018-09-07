@@ -11,6 +11,8 @@ import java.math.BigDecimal;
  */
 public class TransactionWithdraw extends Transaction {
 
+    private BigDecimal clientFromAmountBeforeTransaction;
+
     public TransactionWithdraw(BigDecimal transferedAmount) {
 
         LASTTRANSACTIONID += 1;
@@ -29,7 +31,7 @@ public class TransactionWithdraw extends Transaction {
     public void setClientFrom(Client clientFrom) {
 
         this.clientFrom = clientFrom;
-        this.amountBeforeTransaction = clientFrom.getAmountOfMoney();
+        this.clientFromAmountBeforeTransaction = clientFrom.getAmountOfMoney();
 
     }
 
@@ -52,7 +54,7 @@ public class TransactionWithdraw extends Transaction {
      */
     @Override
     public Transaction startTransaction() {
-        BigDecimal moneyOfClientFrom = clientFrom.getAmountOfMoney().subtract(transferedAmount);
+        BigDecimal moneyOfClientFrom = clientFromAmountBeforeTransaction.subtract(transferedAmount);
         clientFrom.setAmountOfMoney(moneyOfClientFrom);
 
         return this;

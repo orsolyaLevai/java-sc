@@ -10,7 +10,6 @@ import java.util.Date;
  * The class is an universal class for the different transactions.
  * Date transferDate: when the transaction was born
  * BigDecimal transferedAmount: the amount of money which was transferred
- * BigDecimal amountBeforeTransaction: the amount of money which was before the transaction
  * String transactionType: what kind of transaction
  */
 public abstract class Transaction {
@@ -21,7 +20,6 @@ public abstract class Transaction {
     protected Client clientFrom;
     protected Date transerDate;
     protected BigDecimal transferedAmount;
-    protected BigDecimal amountBeforeTransaction;
     protected TransactionType transactionType;
 
 
