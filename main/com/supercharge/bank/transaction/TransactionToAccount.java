@@ -10,14 +10,15 @@ import java.math.BigDecimal;
  * The class is for representing the transaction certain amount of money from his/her bank account to another.
  */
 public class TransactionToAccount extends Transaction {
+    private BigDecimal clientFromAmountBeforeTransaction;
+    private BigDecimal clientToAmountBeforeTransaction;
     private Client clientTo;
 
-    public TransactionToAccount(BigDecimal amountBeforeTransaction, BigDecimal transferedAmount) {
+    public TransactionToAccount(BigDecimal transferedAmount) {
 
         LASTTRANSACTIONID += 1;
         this.transactionId = LASTTRANSACTIONID;
         this.transerDate = Utils.getCurrentDate();
-        this.amountBeforeTransaction = amountBeforeTransaction;
         this.transferedAmount = transferedAmount;
         this.transactionType = TransactionType.WITHDRAW;
 
@@ -32,6 +33,7 @@ public class TransactionToAccount extends Transaction {
     public void setClientFrom(Client clientFrom) {
 
         this.clientFrom = clientFrom;
+        this.clientFromAmountBeforeTransaction = clientFrom.getAmountOfMoney();
 
     }
 
@@ -43,7 +45,8 @@ public class TransactionToAccount extends Transaction {
      */
     public void setClientTo(Client clientTo) {
 
-        this.clientFrom = clientFrom;
+        this.clientTo = clientTo;
+        this.clientToAmountBeforeTransaction = clientTo.getAmountOfMoney();
 
     }
 
@@ -67,10 +70,10 @@ public class TransactionToAccount extends Transaction {
      */
     @Override
     public Transaction startTransaction() {
-        BigDecimal moneyOfClientFrom = clientFrom.getAmountOfMoney().subtract(transferedAmount);
+        BigDecimal moneyOfClientFrom = clientFromAmountBeforeTransaction.subtract(transferedAmount);
         clientFrom.setAmountOfMoney(moneyOfClientFrom);
 
-        BigDecimal moneyOfClientTo = clientFrom.getAmountOfMoney().add(transferedAmount);
+        BigDecimal moneyOfClientTo = clientToAmountBeforeTransaction.add(transferedAmount);
         clientTo.setAmountOfMoney(moneyOfClientTo);
 
         return this;
@@ -89,5 +92,5 @@ public class TransactionToAccount extends Transaction {
 
         return true;
     }
-    
+
 }
