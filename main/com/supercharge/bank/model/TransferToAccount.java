@@ -6,7 +6,7 @@ package com.supercharge.bank.model;
 public class TransferToAccount extends Transaction {
 
     @Override
-    public void doTransaction() {
+    public Transaction startTransaction() {
 
     }
 }
