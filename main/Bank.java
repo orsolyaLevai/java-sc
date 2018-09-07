@@ -48,5 +48,30 @@ public class Bank {
 
         System.out.println("Money after transaction: " + clientFrom.getAmountOfMoney());
 
+
+        //Transfer money
+
+        //Transferable Money
+        BigDecimal money2 = new BigDecimal(50);
+
+        System.out.println("\n\nStarting a transfer between accounts...\n");
+        clientFrom.setAmountOfMoney(new BigDecimal(100));
+
+        TransactionToAccount transactionTransfer = new TransactionToAccount(money2);
+        transactionTransfer.setClientFrom(clientFrom);
+        transactionTransfer.setClientTo(clientTo);
+
+        System.out.println("From: Name: " + clientFrom.getFirstName() + " " + clientFrom.getLastName());
+        System.out.println("Money before transaction: " + clientFrom.getAmountOfMoney());
+        System.out.println("To: Name: " + clientTo.getFirstName() + " " + clientTo.getLastName());
+        System.out.println("Money before transaction: " + clientTo.getAmountOfMoney());
+
+        transactionTransfer.prepareTransaction();
+        transactionTransfer.startTransaction();
+        transactionTransfer.endTransaction();
+
+        System.out.println("ClientFrom: Money after transaction: " + clientFrom.getAmountOfMoney());
+        System.out.println("ClientTo: Money after transaction: " + clientTo.getAmountOfMoney());
+
     }
 }
