@@ -7,12 +7,11 @@ import java.math.BigDecimal;
  */
 public class TransactionDeposit extends Transaction {
 
-    public TransactionDeposit(BigDecimal amountBeforeTransaction, BigDecimal transferedAmount) {
+    public TransactionDeposit(BigDecimal transferedAmount) {
 
         LASTTRANSACTIONID += 1;
         this.transactionId = LASTTRANSACTIONID;
         this.transerDate = Utils.getCurrentDate();
-        this.amountBeforeTransaction = amountBeforeTransaction;
         this.transferedAmount = transferedAmount;
         this.transactionType = TransactionType.DEPOSIT;
 
@@ -26,6 +25,7 @@ public class TransactionDeposit extends Transaction {
     public void setClientFrom(Client clientFrom) {
 
         this.clientFrom = clientFrom;
+        this.amountBeforeTransaction = clientFrom.getAmountOfMoney();
 
     }
 
