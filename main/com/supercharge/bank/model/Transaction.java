@@ -12,6 +12,10 @@ import java.util.Date;
  */
 public abstract class Transaction {
 
+    protected static Long LASTTRANSACTIONID = 0L;
+
+    protected Long transactionId;
+    protected Client clientFrom;
     protected Date transerDate;
     protected BigDecimal transferedAmount;
     protected BigDecimal amountBeforeTransaction;

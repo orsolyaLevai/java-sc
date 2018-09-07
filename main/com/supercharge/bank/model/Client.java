@@ -1,6 +1,7 @@
 package com.supercharge.bank.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -15,6 +16,13 @@ public class Client {
     private BigDecimal amountOfMoney;
 
     private List<Transaction> transactionHistory;
+
+    public Client(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.amountOfMoney = BigDecimal.ZERO;
+        this.transactionHistory = new ArrayList<>();
+    }
 
     public String getFirstName() {
         return firstName;
@@ -40,6 +48,14 @@ public class Client {
         this.amountOfMoney = amountOfMoney;
     }
 
+    public void addTransactionToHistory(Transaction transaction) {
+        transactionHistory.add(transaction);
+    }
+
+    public void removeTransactionToHistory(Transaction transaction) {
+        transactionHistory.remove(transaction);
+    }
+
     public List<Transaction> getTransactionHistory() {
         return transactionHistory;
     }
@@ -47,4 +63,5 @@ public class Client {
     public void setTransactionHistory(List<Transaction> transactionHistory) {
         this.transactionHistory = transactionHistory;
     }
+
 }
